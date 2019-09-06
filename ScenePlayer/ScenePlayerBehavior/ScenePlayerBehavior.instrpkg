@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+	<id>jp.co.chiharu-nameki.ScenePlayerBehavior</id>
+	<title>ScenePlayerBehavior</title>
+	<owner>
+		<name>Chiharu Nameki</name>
+	</owner>
+
+    <import-schema>os-signpost</import-schema>
+    
+    <os-signpost-interval-schema>
+        <id>scene-detection</id>
+        <title>Scene Detection</title>
+        
+        <subsystem>"jp.co.chiharu-nameki.ScenePlayer"</subsystem>
+        <category>"Behavior"</category>
+        <name>"Scene Detection"</name>
+        
+        <start-pattern>
+            <message>"url: " ?url</message>
+        </start-pattern>
+        <end-pattern>
+            <message>"count: " ?count</message>
+        </end-pattern>
+        
+        <column>
+            <mnemonic>url</mnemonic>
+            <title>Video URL</title>
+            <type>string</type>
+            <expression>?url</expression>
+        </column>
+        
+        <column>
+            <mnemonic>scene-count</mnemonic>
+            <title>Scene Count</title>
+            <type>uint32</type>
+            <expression>?count</expression>
+        </column>
+        
+        <column>
+            <mnemonic>result-color</mnemonic>
+            <title>Color</title>
+            <type>event-concept</type>
+            <expression>(if (= ?count 0) then "Red" else "Green")</expression>
+        </column>
+    </os-signpost-interval-schema>
+    
+    
+    <instrument>
+        <id>jp.co.chiharu-nameki.ScenePlayerBehavior.ScenePlayerBehavior</id>
+        <title>ScenePlayer Behavior</title>
+        <category>Behavior</category>
+        <purpose>Visualize what's happen in ScenePlayer app</purpose>
+        <icon>Points of Interest</icon>
+        
+        <create-table>
+            <id>user-actions</id>
+            <schema-ref>os-signpost</schema-ref>
+            <attribute>
+                <name>subsystem</name>
+                <string>jp.co.chiharu-nameki.ScenePlayer</string>
+            </attribute>
+            <attribute>
+                <name>category</name>
+                <string>UserAction</string>
+            </attribute>
+        </create-table>
+        
+        <create-table>
+            <id>scene-detections</id>
+            <schema-ref>scene-detection</schema-ref>
+        </create-table>
+        
+        <graph>
+            <title>ScenePlayer Behavior</title>
+            <lane>
+                <title>User Actions</title>
+                <table-ref>user-actions</table-ref>
+                
+                <plot>
+                    <value-from>name</value-from>
+                </plot>
+            </lane>
+            <lane>
+                <title>Scene Detection</title>
+                <table-ref>scene-detections</table-ref>
+                
+                <plot>
+                    <value-from>url</value-from>
+                    <color-from>result-color</color-from>
+                </plot>
+            </lane>
+        </graph>
+        
+        <list>
+            <title>User Actions</title>
+            <table-ref>user-actions</table-ref>
+            <column>time</column>
+            <column>name</column>
+            <column>message</column>
+        </list>
+        
+        <list>
+            <title>Scene Detection</title>
+            <table-ref>scene-detections</table-ref>
+            <column>start</column>
+            <column>duration</column>
+            <column>url</column>
+            <column>scene-count</column>
+        </list>
+    </instrument>
+    
+    <template>
+        <import-from-file>ScenePlayerBehavior.tracetemplate</import-from-file>
+    </template>
+</package>

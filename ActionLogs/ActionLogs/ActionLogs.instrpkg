@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+	<id>jp.co.chiharu-nameki.ActionLogs</id>
+	<title>ActionLogs</title>
+	<owner>
+		<name>Chiharu Nameki</name>
+	</owner>
+
+    <import-schema>os-log</import-schema>
+    
+    <os-log-point-schema>
+        <id>action-log</id>
+        <title>Action Log</title>
+        
+        <category>"ActionLogs"</category>
+        
+        <pattern>
+            <message>"Type: " ?type ", Page ID: " ?page-id ", Element ID: " ?element-id</message>
+        </pattern>
+        
+        <column>
+            <mnemonic>type</mnemonic>
+            <title>type</title>
+            <type>string</type>
+            <expression>?type</expression>
+        </column>
+        <column>
+            <mnemonic>page-id</mnemonic>
+            <title>Page ID</title>
+            <type>string</type>
+            <expression>?page-id</expression>
+        </column>
+        <column>
+            <mnemonic>element-id</mnemonic>
+            <title>Element ID</title>
+            <type>string</type>
+            <expression>?element-id</expression>
+        </column>
+        <column>
+            <mnemonic>label</mnemonic>
+            <title>label</title>
+            <type>string</type>
+            <expression>(switch ?type (case "view" then ?page-id)(default ?element-id))</expression>
+        </column>
+    </os-log-point-schema>
+    
+    <point-schema>
+        <id>page-id-validator-narrative</id>
+        <title>Narrative</title>
+        
+        <timestamp-column>
+            <mnemonic>time</mnemonic>
+            <title>Timestamp</title>
+            <type>event-time</type>
+        </timestamp-column>
+        
+        <column>
+            <mnemonic>description</mnemonic>
+            <title>Description</title>
+            <type>narrative</type>
+        </column>
+    </point-schema>
+
+    <modeler>
+        <id>jp.co.chiharu-nameki.ActionLogs.PageIDValidator</id>
+        <title>Page ID Validator</title>
+        <purpose>Check if tap log's page ID is equal to the current page ID</purpose>
+        
+        <production-system>
+            <rule-path>page-id-validator.clp</rule-path>
+        </production-system>
+        
+        <output>
+            <schema-ref>page-id-validator-narrative</schema-ref>
+            <required-input>
+                <schema-ref>os-log</schema-ref>
+                <attribute>
+                    <name>category</name>
+                    <string>ActionLogs</string>
+                </attribute>
+            </required-input>
+        </output>
+    </modeler>
+
+    <instrument>
+        <id>jp.co.chiharu-nameki.ActionLogs.ActionLogs</id>
+        <title>Action Logs</title>
+        <category>Behavior</category>
+        <purpose>Visualize user action logs</purpose>
+        <icon>Points of Interest</icon>
+        
+        <create-table>
+            <id>action-logs</id>
+            <schema-ref>action-log</schema-ref>
+        </create-table>
+        
+        <create-table>
+            <id>page-id-validator-narratives</id>
+            <schema-ref>page-id-validator-narrative</schema-ref>
+        </create-table>
+        
+        <graph>
+            <title>Action Log</title>
+            <lane>
+                <title>Action Log</title>
+                <table-ref>action-logs</table-ref>
+                
+                <plot-template>
+                    <instance-by>type</instance-by>
+                    <label-format>%s</label-format>
+                    <value-from>type</value-from>
+                    <label-from>label</label-from>
+                </plot-template>
+            </lane>
+            
+        </graph>
+        
+        <list>
+            <title>Action Log</title>
+            <table-ref>action-logs</table-ref>
+            <column>timestamp</column>
+            <column>type</column>
+            <column>page-id</column>
+            <column>element-id</column>
+        </list>
+        
+        <narrative>
+            <title>Narrative</title>
+            <table-ref>page-id-validator-narratives</table-ref>
+            <narrative-column>description</narrative-column>
+        </narrative>
+        
+    </instrument>
+    
+    <!-- MARK: Embed Templates -->
+    <!-- Templates may be included and represent a collection of tools configured for a specific tracing workflow -->
+    <!-- Each 'template' element specifies the relative path to a .tracetemplate file in the project -->
+    <!-- To create a template: start with a blank document, configure with instruments desired, and choose "File -> Save as Template" -->
+</package>

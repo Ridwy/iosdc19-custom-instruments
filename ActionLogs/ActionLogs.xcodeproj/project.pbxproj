@@ -1,0 +1,173 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F181AB88231FBC450034E2C0 /* ActionLogs.instrpkg in Sources */ = {isa = PBXBuildFile; fileRef = F181AB87231FBC450034E2C0 /* ActionLogs.instrpkg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F181AB84231FBC450034E2C0 /* ActionLogs.instrdst */ = {isa = PBXFileReference; explicitFileType = com.apple.instruments.instrdst; includeInIndex = 0; path = ActionLogs.instrdst; sourceTree = BUILT_PRODUCTS_DIR; };
+		F181AB87231FBC450034E2C0 /* ActionLogs.instrpkg */ = {isa = PBXFileReference; lastKnownFileType = "com.apple.instruments.package-definition"; path = ActionLogs.instrpkg; sourceTree = "<group>"; };
+		F1956E812322C90100B684BE /* page-id-validator.clp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.clips; path = "page-id-validator.clp"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		F181AB7D231FBC450034E2C0 = {
+			isa = PBXGroup;
+			children = (
+				F181AB86231FBC450034E2C0 /* ActionLogs */,
+				F181AB85231FBC450034E2C0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F181AB85231FBC450034E2C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F181AB84231FBC450034E2C0 /* ActionLogs.instrdst */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F181AB86231FBC450034E2C0 /* ActionLogs */ = {
+			isa = PBXGroup;
+			children = (
+				F181AB87231FBC450034E2C0 /* ActionLogs.instrpkg */,
+				F1956E812322C90100B684BE /* page-id-validator.clp */,
+			);
+			path = ActionLogs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F181AB83231FBC450034E2C0 /* ActionLogs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F181AB89231FBC450034E2C0 /* Build configuration list for PBXNativeTarget "ActionLogs" */;
+			buildPhases = (
+				F181AB82231FBC450034E2C0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ActionLogs;
+			productName = ActionLogs;
+			productReference = F181AB84231FBC450034E2C0 /* ActionLogs.instrdst */;
+			productType = "com.apple.product-type.instruments-package";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F181AB7E231FBC450034E2C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = "Chiharu Nameki";
+				TargetAttributes = {
+					F181AB83231FBC450034E2C0 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+				};
+			};
+			buildConfigurationList = F181AB81231FBC450034E2C0 /* Build configuration list for PBXProject "ActionLogs" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F181AB7D231FBC450034E2C0;
+			productRefGroup = F181AB85231FBC450034E2C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F181AB83231FBC450034E2C0 /* ActionLogs */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F181AB82231FBC450034E2C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F181AB88231FBC450034E2C0 /* ActionLogs.instrpkg in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F181AB7F231FBC450034E2C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		F181AB80231FBC450034E2C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+		F181AB8A231FBC450034E2C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALTERNATE_GROUP = "";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32PV9WU5UH;
+				INSTALL_GROUP = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Instruments/Packages";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSIONING_SYSTEM = "";
+			};
+			name = Debug;
+		};
+		F181AB8B231FBC450034E2C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALTERNATE_GROUP = "";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32PV9WU5UH;
+				INSTALL_GROUP = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Instruments/Packages";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSIONING_SYSTEM = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F181AB81231FBC450034E2C0 /* Build configuration list for PBXProject "ActionLogs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F181AB7F231FBC450034E2C0 /* Debug */,
+				F181AB80231FBC450034E2C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F181AB89231FBC450034E2C0 /* Build configuration list for PBXNativeTarget "ActionLogs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F181AB8A231FBC450034E2C0 /* Debug */,
+				F181AB8B231FBC450034E2C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F181AB7E231FBC450034E2C0 /* Project object */;
+}
